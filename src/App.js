@@ -13,6 +13,7 @@ import Post from "./components/Post";
 import NotFound from "./components/NotFound";
 import PostForm from "./components/PostForm";
 import Message from "./components/Message";
+import Login from "./components/Login";
 
 class App extends Component {
   state = {
@@ -87,6 +88,7 @@ class App extends Component {
                 else return <NotFound />;
               }}
             />
+            <Route exact path='/login' component={Login} />
             <Route
               exact
               path='/new'

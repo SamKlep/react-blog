@@ -7,7 +7,7 @@ const Post = ({ post }) => {
 
   return (
     <article className='post container'>
-      <h2>{post.title}</h2>
+      <h1>{post.title}</h1>
       <div
         className='content'
         dangerouslySetInnerHTML={{
