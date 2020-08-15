@@ -18,6 +18,7 @@ import firebase from "./firebase";
 
 class App extends Component {
   state = {
+    isAuthenticated: false,
     posts: [],
     message: null,
   };
