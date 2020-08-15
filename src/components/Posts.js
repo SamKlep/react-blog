@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import UserContext from "../context/UserContext";
 
 const Posts = ({ posts, deletePost }) => {
+  const { user } = useContext(UserContext);
   return (
     <article className='posts container'>
       <h1>Posts</h1>
@@ -10,6 +12,9 @@ const Posts = ({ posts, deletePost }) => {
         {posts.map((post) => (
           <li key={post.id}>
             <h2>
+              <Link to={`/post/${post.slug}`}>{post.title}</Link>
+            </h2>
+            {user.isAuthenticated && (
               <p>
                 <Link to={`/edit/${post.slug}`}>Edit</Link>
                 {" | "}
@@ -17,8 +22,7 @@ const Posts = ({ posts, deletePost }) => {
                   Delete
                 </button>
               </p>
-              <Link to={`/post/${post.slug}`}>{post.title}</Link>
-            </h2>
+            )}
           </li>
         ))}
       </ul>
