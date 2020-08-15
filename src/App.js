@@ -14,11 +14,24 @@ import NotFound from "./components/NotFound";
 import PostForm from "./components/PostForm";
 import Message from "./components/Message";
 import Login from "./components/Login";
+import firebase from "./firebase";
 
 class App extends Component {
   state = {
     posts: [],
     message: null,
+  };
+
+  onLogin = (email, password) => {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((user) => {
+        this.setState({
+          isAuthenticated: true,
+        });
+      })
+      .catch((error) => console.error(error));
   };
 
   getNewSlugFromTitle = (title) =>
@@ -88,7 +101,11 @@ class App extends Component {
                 else return <NotFound />;
               }}
             />
-            <Route exact path='/login' component={Login} />
+            <Route
+              exact
+              path='/login'
+              render={() => <Login onLogin={this.onLogin} />}
+            />
             <Route
               exact
               path='/new'
